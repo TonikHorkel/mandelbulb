@@ -1,2 +1,2 @@
 # mandelbulb
-OpenGL mandelbulb fractal renderer written in Odin.
+OpenGL mandelbulb fractal renderer written in Odin. [Download](https://github.com/TonikHorkel/mandelbulb/releases).
