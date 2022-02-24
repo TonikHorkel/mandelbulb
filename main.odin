@@ -19,7 +19,7 @@ import "core:time"
     glfw.WindowHint(glfw.MAXIMIZED, 1)
     glfw.WindowHint(glfw.CENTER_CURSOR, 0)
     // glfw.WindowHint(glfw.TRANSPARENT_FRAMEBUFFER, 1)
-    window := glfw.CreateWindow(1024, 768, "fviewer", nil, nil)
+    window := glfw.CreateWindow(1024, 768, "mandelbulb", nil, nil)
     assert(window != nil)
     defer glfw.DestroyWindow(window)
     glfw.SetWindowSizeLimits(window, 512, 384, glfw.DONT_CARE, glfw.DONT_CARE)
