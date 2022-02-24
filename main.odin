@@ -17,7 +17,6 @@ import "core:time"
     glfw.WindowHint(glfw.OPENGL_PROFILE, glfw.OPENGL_CORE_PROFILE)
     glfw.WindowHint(glfw.OPENGL_FORWARD_COMPAT, 1)
     glfw.WindowHint(glfw.MAXIMIZED, 1)
-    glfw.WindowHint(glfw.CENTER_CURSOR, 0)
     // glfw.WindowHint(glfw.TRANSPARENT_FRAMEBUFFER, 1)
     window := glfw.CreateWindow(1024, 768, "mandelbulb", nil, nil)
     assert(window != nil)
