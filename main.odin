@@ -2,6 +2,7 @@ package main
 
 import "vendor:glfw"
 import gl "vendor:OpenGL"
+import "core:time"
 
 @(optimization_mode="speed") update_viewport :: #force_inline proc "c" (frame_buffer_width : i32, frame_buffer_height : i32) #no_bounds_check {
     if frame_buffer_width > frame_buffer_height do gl.Viewport(0, (frame_buffer_height - frame_buffer_width) / 2, frame_buffer_width, frame_buffer_width)
@@ -39,15 +40,16 @@ import gl "vendor:OpenGL"
     defer gl.DeleteVertexArrays(1, &VAO)
     gl.BindVertexArray(VAO)
     defer gl.BindVertexArray(0)
+    stopwatch : time.Stopwatch
+    time.stopwatch_start(&stopwatch)
     frame_buffer_width, frame_buffer_height : i32 = ---, ---
-    time : f32
     for {
         if glfw.WindowShouldClose(window) do break
         frame_buffer_width, frame_buffer_height = glfw.GetFramebufferSize(window)
         // TODO: It's unnecessary to update the viewport every frame even though the frame buffer size doesn't change.
         // Consider using some callback function for this.
         update_viewport(frame_buffer_width, frame_buffer_height)
-        time += .02
+        time := f32(time.duration_seconds(time.stopwatch_duration(stopwatch))) * .5
         gl.Uniform1f(time_uniform_location, time)
         gl.Clear(gl.COLOR_BUFFER_BIT)
         gl.DrawArrays(gl.TRIANGLE_STRIP, 0, 4)
